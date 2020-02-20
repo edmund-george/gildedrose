@@ -30,11 +30,17 @@ class GildedRose {
                     if (!isBackstagePass(item)) {
                         if (isQualityPositive(item)) updateQualityDecreaseWithAge(item);
                     }
-                    else item.quality = item.quality - item.quality;
+                    else {
+                        setQualityZero(item);
+                    }
                 }
                 else updateQualityIncreaseWithAge(item);
             }
         }
+    }
+
+    private void setQualityZero(Item item) {
+        item.quality = 0;
     }
 
     private boolean isAgedBrie(Item item) {

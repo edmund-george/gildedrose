@@ -9,38 +9,46 @@ class GildedRose {
 
     public void updateQuality() {
         for (Item item : items) {
-            if (!isAgedBrie(item) && !isBackstagePass(item)) {
-                if (isQualityPositive(item)) {updateQualityDecreaseWithAge(item);}
-            } else {
-                updateQualityIncreaseWithAge(item);
-                if (item.quality < 50) {
+            updateQuality(item);
+        }
+    }
 
-                    if (isBackstagePass(item)) {
-                        if (item.sellIn < 11) {updateQualityIncreaseWithAge(item);}
-                        if (item.sellIn < 6) {updateQualityIncreaseWithAge(item);}
-                    }
+    private void updateQuality(Item item) {
+        if (isNormal(item)) {
+            if (isQualityPositive(item)) {updateQualityDecreaseWithAge(item);}
+        }
+        else { // is Sulfuras
+            updateQualityIncreaseWithAge(item);
+            if (item.quality < 50) {
+                if (isBackstagePass(item)) {
+                    if (item.sellIn < 11) {updateQualityIncreaseWithAge(item);}
+                    if (item.sellIn < 6) {updateQualityIncreaseWithAge(item);}
                 }
-
             }
 
-            if (!isSulfuras(item)) item.sellIn = item.sellIn - 1;
+        }
 
-            if (item.sellIn < 0) {
-                if (!isAgedBrie(item)) {
-                    if (!isBackstagePass(item)) {
-                        if (isQualityPositive(item)) updateQualityDecreaseWithAge(item);
-                    }
-                    else {
-                        setQualityZero(item);
-                    }
+        if (!isSulfuras(item)) item.sellIn = item.sellIn - 1;
+
+        if (item.sellIn < 0) {
+            if (!isAgedBrie(item)) {
+                if (!isBackstagePass(item)) {
+                    if (isQualityPositive(item)) updateQualityDecreaseWithAge(item);
                 }
-                else updateQualityIncreaseWithAge(item);
+                else {
+                    setQualityZero(item);
+                }
             }
+            else updateQualityIncreaseWithAge(item);
         }
     }
 
     private void setQualityZero(Item item) {
         item.quality = 0;
+    }
+
+    private boolean isNormal(Item item){
+        return !isAgedBrie(item) && !isBackstagePass(item);
     }
 
     private boolean isAgedBrie(Item item) {

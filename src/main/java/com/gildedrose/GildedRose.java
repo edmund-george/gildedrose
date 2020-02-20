@@ -9,7 +9,7 @@ class GildedRose {
 
     public void updateQuality() {
         for (Item item : items) {
-            if (!item.name.equals("Aged Brie")
+            if (!isAgedBrie(item)
                     && !isBackstagePass(item)) {
                 if (isQualityPositive(item)) {
                     updateQualityDecreaseWithAge(item);
@@ -36,7 +36,7 @@ class GildedRose {
             }
 
             if (item.sellIn < 0) {
-                if (!item.name.equals("Aged Brie")) {
+                if (!isAgedBrie(item)) {
                     if (!isBackstagePass(item)) {
                         if (isQualityPositive(item)) {
                             updateQualityDecreaseWithAge(item);
@@ -49,6 +49,10 @@ class GildedRose {
                 }
             }
         }
+    }
+
+    private boolean isAgedBrie(Item item) {
+        return item.name.equals("Aged Brie");
     }
 
     private boolean isSulfuras(Item item) {

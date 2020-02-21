@@ -15,10 +15,14 @@ class GildedRose {
 
     private void updateQuality(Item item) {
         if (isNormal(item)) {
-            if (isQualityPositive(item)) {updateQualityDecreaseWithAge(item);}
+            if (isQualityPositive(item)) {
+                updateQualityDecreaseWithAge(item);
+            }
+
+            if (item.sellIn <= 0) { if (isQualityPositive(item)) updateQualityDecreaseWithAge(item);}
 
         }
-        else { // is Sulfuras
+        else {
             updateQualityIncreaseWithAge(item);
             if (item.quality < 50) {
                 if (isBackstagePass(item)) {
@@ -26,8 +30,9 @@ class GildedRose {
                     if (item.sellIn < 6) {updateQualityIncreaseWithAge(item);}
                 }
             }
-
         }
+
+
         if (!isSulfuras(item)) {
             decreaseSellIn(item);
         }
@@ -35,7 +40,7 @@ class GildedRose {
         if (item.sellIn < 0) {
             if (!isAgedBrie(item)) {
                 if (!isBackstagePass(item)) {
-                    if (isQualityPositive(item)) updateQualityDecreaseWithAge(item);
+                    //if (isQualityPositive(item)) updateQualityDecreaseWithAge(item);
                 }
                 else {
                     setQualityZero(item);

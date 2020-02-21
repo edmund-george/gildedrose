@@ -9,17 +9,16 @@ class GildedRose {
 
     public void updateQuality() {
         for (Item item : items) {
-            updateQuality(item);
+            if(isNormalItem(item)){
+               new NormalItem(item).updateQuality();
+            }
+            else updateQuality(item);
         }
     }
 
     private void updateQuality(Item item) {
-        if (isNormalItem(item)) {
-            decreaseSellIn(item);
-            if (isQualityPositive(item)) updateQualityDecreaseWithAge(item);
-            if (item.sellIn < 0) { if (isQualityPositive(item)) updateQualityDecreaseWithAge(item);}
-        }
-        else {
+
+
             if(isAgedBrie(item)){
                 decreaseSellIn(item);
                 updateQualityIncreaseWithAge(item);
@@ -36,7 +35,7 @@ class GildedRose {
             }
 
         }
-    }
+
 
     private void decreaseSellIn(Item item) {
         item.sellIn = item.sellIn - 1;

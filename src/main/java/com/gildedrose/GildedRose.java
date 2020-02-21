@@ -21,15 +21,6 @@ class GildedRose {
         }
     }
 
-
-    private void decreaseSellIn(Item item) {
-        item.sellIn = item.sellIn - 1;
-    }
-
-    private void setQualityZero(Item item) {
-        item.quality = 0;
-    }
-
     private boolean isNormalItem(Item item){
         return !isAgedBrie(item) && !isBackstagePass(item) && !isSulfuras(item);
     }
@@ -46,17 +37,4 @@ class GildedRose {
         return item.name.equals("Backstage passes to a TAFKAL80ETC concert");
     }
 
-    private boolean isQualityPositive(Item item) {
-        return item.quality > 0;
-    }
-
-    private void updateQualityDecreaseWithAge(Item item) {
-        if (!isSulfuras(item)) {
-            item.quality = item.quality - 1;
-        }
-    }
-
-    private void updateQualityIncreaseWithAge(Item item) {
-            item.quality = item.quality + 1;
-    }
 }

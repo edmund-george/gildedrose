@@ -1,6 +1,6 @@
 package com.gildedrose;
 
-public class BackstagePass {
+public class BackstagePass implements MyItem {
     Item item;
 
     public BackstagePass(Item item){
@@ -8,22 +8,27 @@ public class BackstagePass {
     }
 
     public void updateQuality(){
-        decreaseSellIn(item);
-        if(item.quality<50) updateQualityIncreaseWithAge(item);
-        if (item.sellIn < 11 && item.quality<50) {updateQualityIncreaseWithAge(item);}
-        if (item.sellIn < 6 && item.quality<50) {updateQualityIncreaseWithAge(item);}
-        if (item.sellIn < 0 && item.quality<50) setQualityZero(item);
+        decreaseSellIn();
+
+            updateQualityIncreaseWithAge();
+
+            if (item.sellIn < 11 ) {updateQualityIncreaseWithAge();}
+            if (item.sellIn < 6 ) {updateQualityIncreaseWithAge();}
+            if (item.sellIn < 0 ) {setQualityZero();}
+
     }
 
-    private void decreaseSellIn(Item item) {
+    private void decreaseSellIn() {
         item.sellIn = item.sellIn - 1;
     }
 
-    private void updateQualityIncreaseWithAge(Item item) {
-        item.quality = item.quality + 1;
+    private void updateQualityIncreaseWithAge() {
+        if(item.quality<50) {
+            item.quality = item.quality + 1;
+        }
     }
 
-    private void setQualityZero(Item item) {
+    private void setQualityZero() {
         item.quality = 0;
     }
 }

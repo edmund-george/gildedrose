@@ -9,16 +9,21 @@ class GildedRose {
 
     public void updateQuality() {
         for (Item item : items) {
-            if(isNormalItem(item)){
-               new NormalItem(item).updateQuality();
-            }
-            else if(isAgedBrie(item)){
-                new AgedBrie(item).updateQuality();
-            }
-            else if(isBackstagePass(item)){
-                new BackstagePass(item).updateQuality();
-            }
+            moo(item).updateQuality();
         }
+    }
+
+    private MyItem moo(Item item) {
+        if(isNormalItem(item)){
+           return new NormalItem(item);
+        }
+        else if(isAgedBrie(item)){
+            return new AgedBrie(item);
+        }
+        else if(isBackstagePass(item)){
+            return new BackstagePass(item);
+        }
+        return new Sulfuras();
     }
 
     private boolean isNormalItem(Item item){

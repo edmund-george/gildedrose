@@ -1,6 +1,6 @@
 package com.gildedrose;
 
-public class NormalItem {
+public class NormalItem implements MyItem{
     Item item;
 
     public NormalItem(Item item){

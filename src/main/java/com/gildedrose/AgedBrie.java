@@ -1,6 +1,6 @@
 package com.gildedrose;
 
-public class AgedBrie {
+public class AgedBrie implements MyItem{
     Item item;
 
     public AgedBrie(Item item){

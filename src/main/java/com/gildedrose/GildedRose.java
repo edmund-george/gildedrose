@@ -23,16 +23,16 @@ class GildedRose {
             if(isAgedBrie(item)){
                 decreaseSellIn(item);
                 updateQualityIncreaseWithAge(item);
-                if (item.sellIn < 0) updateQualityIncreaseWithAge(item);
+                if (item.sellIn < 0 && item.quality<50) updateQualityIncreaseWithAge(item);
             }
             if (isBackstagePass(item)) {
                 decreaseSellIn(item);
-                if (item.quality < 50) {
-                    updateQualityIncreaseWithAge(item);
-                    if (item.sellIn < 11) {updateQualityIncreaseWithAge(item);}
-                    if (item.sellIn < 6) {updateQualityIncreaseWithAge(item);}
-                    if (item.sellIn < 0) setQualityZero(item);
-                }
+
+                    if(item.quality<50) updateQualityIncreaseWithAge(item);
+                    if (item.sellIn < 11 && item.quality<50) {updateQualityIncreaseWithAge(item);}
+                    if (item.sellIn < 6 && item.quality<50) {updateQualityIncreaseWithAge(item);}
+                    if (item.sellIn < 0 && item.quality<50) setQualityZero(item);
+
             }
 
         }
@@ -73,8 +73,6 @@ class GildedRose {
     }
 
     private void updateQualityIncreaseWithAge(Item item) {
-        if (item.quality < 50) {
             item.quality = item.quality + 1;
-        }
     }
 }

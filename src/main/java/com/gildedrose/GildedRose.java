@@ -12,32 +12,14 @@ class GildedRose {
             if(isNormalItem(item)){
                new NormalItem(item).updateQuality();
             }
-            if(isAgedBrie(item)){
+            else if(isAgedBrie(item)){
                 new AgedBrie(item).updateQuality();
             }
-            else updateQuality(item);
+            else if(isBackstagePass(item)){
+                new BackstagePass(item).updateQuality();
+            }
         }
     }
-
-    private void updateQuality(Item item) {
-
-
-/*            if(isAgedBrie(item)){
-                decreaseSellIn(item);
-                updateQualityIncreaseWithAge(item);
-                if (item.sellIn < 0 && item.quality<50) updateQualityIncreaseWithAge(item);
-            }*/
-            if (isBackstagePass(item)) {
-                decreaseSellIn(item);
-
-                    if(item.quality<50) updateQualityIncreaseWithAge(item);
-                    if (item.sellIn < 11 && item.quality<50) {updateQualityIncreaseWithAge(item);}
-                    if (item.sellIn < 6 && item.quality<50) {updateQualityIncreaseWithAge(item);}
-                    if (item.sellIn < 0 && item.quality<50) setQualityZero(item);
-
-            }
-
-        }
 
 
     private void decreaseSellIn(Item item) {

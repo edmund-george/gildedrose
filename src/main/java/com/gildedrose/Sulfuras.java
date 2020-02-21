@@ -1,6 +1,6 @@
 package com.gildedrose;
 
-public class Sulfuras implements MyItem {
+public class Sulfuras extends AbstractMyItem {
     @Override
     public void updateQuality() {
 

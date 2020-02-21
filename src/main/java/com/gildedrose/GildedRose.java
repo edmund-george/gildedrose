@@ -15,10 +15,7 @@ class GildedRose {
 
     private void updateQuality(Item item) {
         if (isNormalItem(item)) {
-            if (isQualityPositive(item)) {
-                updateQualityDecreaseWithAge(item);
-            }
-
+            if (isQualityPositive(item)) updateQualityDecreaseWithAge(item);
             if (item.sellIn <= 0) { if (isQualityPositive(item)) updateQualityDecreaseWithAge(item);}
         }
         else {
